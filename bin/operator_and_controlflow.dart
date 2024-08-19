@@ -153,20 +153,6 @@ void main(List<String> args) {
   // t *= 2; // t = t * 2, in ra 16
   // print(t); // In ra 16
 
-  // //! Dart input
-  // Để thực hiện nhận giá trị mà người dùng nhập từ bàn phím, sử dụng hàm readLineSync
-  // print("Enter your name:");
-  // // Đọc giá trị của name
-  // // cần phải import thư viện dart.io
-  // // Tự import 'dart:io'; vào dòng đầu tiên của file
-  // String? inputedName = stdin.readLineSync();
-  // print("Enter your Student Id:");
-  // int? studentId = int.tryParse(stdin.readLineSync() ?? '');
-  // // In ra giá trị của name và studentId
-  // print("Hello, $inputedName\nYour student ID: $studentId");
-  // Để có thể nhập từ bàn phím thì cần phải chạy dart application trên terminal
-  // bằng câu lệnh: dart run path-to-dart-file
-
   // //! Dart control flow
   // là các câu lệnh dùng để điều khiển flow chạy code của Dart
   // giúp quyết định khi nào các đoạn code sẽ được thực hiện, lặp lại, hoặc bỏ qua.
@@ -336,4 +322,18 @@ void main(List<String> args) {
   // } catch (e) {
   //   print('Caught an exception: $e'); // Bắt và xử lý ngoại lệ
   // }
+
+  // //! Dart input
+  // Để thực hiện nhận giá trị mà người dùng nhập từ bàn phím, sử dụng hàm readLineSync
+  // print("Enter your name:");
+  // // Đọc giá trị của name
+  // // cần phải import thư viện dart.io
+  // // Tự import 'dart:io'; vào dòng đầu tiên của file
+  // String? inputedName = stdin.readLineSync();
+  // print("Enter your Student Id:");
+  // int? studentId = int.tryParse(stdin.readLineSync() ?? '');
+  // // In ra giá trị của name và studentId
+  // print("Hello, $inputedName\nYour student ID: $studentId");
+  // Để có thể nhập từ bàn phím thì cần phải chạy dart application trên terminal
+  // bằng câu lệnh: dart run path-to-dart-file
 }
