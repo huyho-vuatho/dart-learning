@@ -27,6 +27,7 @@ class Father {
   get numberOfCars => _numberOfCars;
 
   get numberOfHouses => _numberOfHouses;
+
   void doBusiness() {
     print("Tôi kinh doanh quán ăn");
   }
@@ -35,6 +36,6 @@ class Father {
 class Son extends Father {
   @override
   void doBusiness() {
-    print("Tôi kinh doanh quán nước");
+    print("Tôi kinh doanh quán chè");
   }
 }

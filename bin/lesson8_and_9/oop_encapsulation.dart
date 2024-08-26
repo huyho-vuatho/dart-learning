@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 //! Đóng gói (Encapsulation)
 // Bảo vệ dữ liệu bằng cách ẩn các thuộc tính và phương thức quan trọng
 // và cung cấp các phương thức công khai để truy cập dữ liệu
@@ -55,4 +56,22 @@ class BankAccount {
       _balance -= amount;
     }
   }
+}
+
+class Employee {
+  final String _id;
+  double _salary;
+
+  Employee(this._id, this._salary);
+
+  //! id
+  // get: để lấy giá trị
+  String get idEmployee => _id;
+  // set: ko thể gán giá trị mới do đó ko có set
+
+  // get
+  double get salary => _salary;
+
+  // set
+  set salaryImporting(double amount) => _salary = _salary + amount;
 }
