@@ -15,63 +15,63 @@
 //    set: gán giá trị mới có kiểm soát cho các thuộc tính riêng tư,
 //         developer sẽ chỉ định thuộc tính nào sẽ dc gán giá trị mới
 
-class BankAccount {
-  final String _accountNumber;
-  double _balance;
-  bool _isShowingBalance;
+// class BankAccount {
+//   final String _accountNumber;
+//   double _balance;
+//   bool _isShowingBalance;
 
-  BankAccount(this._accountNumber, this._balance,
-      [this._isShowingBalance = false]);
+//   BankAccount(this._accountNumber, this._balance,
+//       [this._isShowingBalance = false]);
 
-  // Getter cho số dư
-  String get balance => _isShowingBalance ? _balance.toString() : "*********";
+//   // Getter cho số dư
+//   String get balance => _isShowingBalance ? _balance.toString() : "*********";
 
-  // Getter cho số tài khoản
-  String get bankNumber => _accountNumber;
+//   // Getter cho số tài khoản
+//   String get bankNumber => _accountNumber;
 
-  set deposit2(double amount) {
-    if (amount > 0) {
-      _balance += amount;
-    }
-  }
+//   set deposit2(double amount) {
+//     if (amount > 0) {
+//       _balance += amount;
+//     }
+//   }
 
-  set isShowingBalance(bool newValue) => _isShowingBalance = newValue;
+//   set isShowingBalance(bool newValue) => _isShowingBalance = newValue;
 
-  set withdraw2(double amount) {
-    if (amount > 0 && amount <= _balance) {
-      _balance -= amount;
-    }
-  }
+//   set withdraw2(double amount) {
+//     if (amount > 0 && amount <= _balance) {
+//       _balance -= amount;
+//     }
+//   }
 
-  // Method để gửi tiền
-  void deposit(double amount) {
-    if (amount > 0) {
-      _balance += amount;
-    }
-  }
+//   // Method để gửi tiền
+//   void deposit(double amount) {
+//     if (amount > 0) {
+//       _balance += amount;
+//     }
+//   }
 
-  // Method để rút tiền
-  void withdraw(double amount) {
-    if (amount > 0 && amount <= _balance) {
-      _balance -= amount;
-    }
-  }
-}
+//   // Method để rút tiền
+//   void withdraw(double amount) {
+//     if (amount > 0 && amount <= _balance) {
+//       _balance -= amount;
+//     }
+//   }
+// }
 
-class Employee {
-  final String _id;
-  double _salary;
+// class Employee {
+//   final String _id;
+//   double _salary;
 
-  Employee(this._id, this._salary);
+//   Employee(this._id, this._salary);
 
-  //! id
-  // get: để lấy giá trị
-  String get idEmployee => _id;
-  // set: ko thể gán giá trị mới do đó ko có set
+//   //! id
+//   // get: để lấy giá trị
+//   String get idEmployee => _id;
+//   // set: ko thể gán giá trị mới do đó ko có set
 
-  // get
-  double get salary => _salary;
+//   // get
+//   double get salary => _salary;
 
-  // set
-  set salaryImporting(double amount) => _salary = _salary + amount;
-}
+//   // set
+//   set salaryImporting(double amount) => _salary = _salary + amount;
+// }
