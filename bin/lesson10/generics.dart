@@ -1,10 +1,11 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 //! Generic
 // Trong nhiều trường hợp, bạn muốn viết một lớp hoặc một hàm mà có thể làm việc với nhiều loại dữ liệu khác nhau,
 // nhưng vẫn giữ được tính an toàn kiểu dữ liệu.
 // Thay vì phải viết các phiên bản khác nhau của cùng một lớp hoặc hàm cho từng kiểu dữ liệu,
 // bạn có thể sử dụng Generic để làm điều này.
 
-//? Generic là dung một ký tự nào đó ví dụ như E, T, K, V,...
+//? Generic là kí hiệu một ký tự nào đó ví dụ như E, T, K, V,...
 //? để đại diện cho một kiểu dữ liệu chưa biết khi viết hàm hoặc method,
 //? nhưng khi sử dụng thì phải truyền kiểu dữ liệu mong muốn vào.
 
@@ -15,25 +16,11 @@
 
 //? Box<T>: Đây là một lớp generic với tham số kiểu T.
 // Điều này có nghĩa là T có thể là bất kỳ kiểu dữ liệu nào, và Box sẽ lưu trữ một giá trị của kiểu đó.
-// class Box<T> {
-//   T value;
-
-//   Box(this.value);
-
-//   void updateValue(T newValue) {
-//     value = newValue;
-//   }
-
-//   T getValue() {
-//     return value;
-//   }
-// }
-
 // void main() {
 //   //? Khi tạo một đối tượng của Box, bạn chỉ định kiểu dữ liệu cụ thể mà Box sẽ làm việc với
 
 //   // Box cho kiểu int
-//   Box<int> intBox = Box(123);
+//   Box<int> intBox = Box<int>(123);
 //   print('Integer value: ${intBox.getValue()}'); // In ra: Integer value: 123
 
 //   // Box cho kiểu String
@@ -42,7 +29,52 @@
 
 //   // Cập nhật giá trị trong Box
 //   intBox.updateValue(456);
-//   print('Updated integer value: ${intBox.getValue()}'); // In ra: Updated integer value: 456
+//   print(
+//       'Updated integer value: ${intBox.getValue()}'); // In ra: Updated integer value: 456
+// }
+
+// class Box<T> {
+//   T value;
+
+//   Box(this.value);
+
+//   T getValue() {
+//     return value;
+//   }
+
+//   void updateValue(T newValue) {
+//     value = newValue;
+//   }
+// }
+
+// class BoxInt {
+//   int value;
+//   BoxInt({
+//     required this.value,
+//   });
+
+//   int getValue() {
+//     return value;
+//   }
+
+//   void updateValue(int newValue) {
+//     value = newValue;
+//   }
+// }
+
+// class BoxString {
+//   String value;
+//   BoxString({
+//     required this.value,
+//   });
+
+//   String getValue() {
+//     return value;
+//   }
+
+//   void updateValue(String newValue) {
+//     value = newValue;
+//   }
 // }
 
 //! Generic trong hàm (Function Generics)
@@ -55,11 +87,10 @@
 //? Comparable: Comparable là một giao diện (interface) trong Dart được sử dụng để so sánh các đối tượng với nhau.
 // Khi một lớp triển khai giao diện Comparable,
 // nó cần cung cấp một phương thức có tên là compareTo để xác định cách so sánh hai đối tượng của lớp đó
-
 // void main() {
 //   print('Max int: ${findMax<num>(10, 20)}'); // In ra: Max int: 20
 //   print(
-//       'Max string: ${findMax('apple', 'banana')}'); // In ra: Max string: banana
+//       'Max string: ${findMax<String>('apple', 'banana')}'); // In ra: Max string: banana
 // }
 
 // T findMax<T extends Comparable<T>>(T a, T b) {
@@ -72,36 +103,36 @@
 // }
 
 //! Generic trong Interface
-// // Generic cũng có thể được sử dụng trong Interface để tạo các Interface làm việc với nhiều loại dữ liệu khác nhau.
-// void main() {
-//   Storage<int> intStorage = MemoryStorage<int>();
-//   intStorage.addItem(123);
-//   print('Stored int: ${intStorage.getItem()}'); // In ra: Stored int: 123
+//? Generic cũng có thể được sử dụng trong Interface để tạo các Interface làm việc với nhiều loại dữ liệu khác nhau.
+void main() {
+  Storage<int> intStorage = MemoryStorage<int>();
+  intStorage.addItem(123);
+  print('Stored int: ${intStorage.getItem()}'); // In ra: Stored int: 123
 
-//   Storage<String> stringStorage = MemoryStorage<String>();
-//   stringStorage.addItem('Hello');
-//   print(
-//       'Stored string: ${stringStorage.getItem()}'); // In ra: Stored string: Hello
-// }
+  Storage<String> stringStorage = MemoryStorage<String>();
+  stringStorage.addItem('Hello');
+  print(
+      'Stored string: ${stringStorage.getItem()}'); // In ra: Stored string: Hello
+}
 
-// class MemoryStorage<T> implements Storage<T> {
-//   T? _item;
+class MemoryStorage<B> implements Storage<B> {
+  B? _item;
 
-//   @override
-//   void addItem(T item) {
-//     _item = item;
-//   }
+  @override
+  void addItem(B item) {
+    _item = item;
+  }
 
-//   @override
-//   T? getItem() {
-//     return _item;
-//   }
-// }
+  @override
+  B? getItem() {
+    return _item;
+  }
+}
 
-// abstract class Storage<T> {
-//   void addItem(T item);
-//   T? getItem();
-// }
+abstract class Storage<T> {
+  void addItem(T item);
+  T? getItem();
+}
 
 //! Bài Tập: Quản lý Bộ Sưu Tập Các Món Hàng
 

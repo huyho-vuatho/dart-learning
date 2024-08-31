@@ -22,11 +22,44 @@
 // Định nghĩa các phương thức run() và fly().
 // Những phương thức này có thể được sử dụng trong các lớp khác
 //? bằng cách sử dụng từ khóa with.
-// mixin CanRun {
-//   void run() {
-//     print('Running');
+// //? Lớp Bird: Sử dụng mixin CanFly, do đó lớp này có thể truy cập phương thức fly().
+// void main() {
+//   Bird bird = Bird();
+//   bird.chirp(); // In ra: Chirping
+//   bird.fly(); // In ra: Flying
+
+//   Human human = Human();
+//   human.speak(); // In ra: Speaking
+//   human.run(); // In ra: Running
+
+//   SuperHero hero = SuperHero();
+//   hero.saveTheDay(); // In ra: Saving the day!
+//   hero.run(); // In ra: Running
+//   hero.fly(); // In ra: Flying
+// }
+
+// class Bird with CanFly {
+//   void chirp() {
+//     print('Chirping');
+//   }
+
+//   @override
+//   void fly() {
+//     print('Flying cao 50m');
 //   }
 // }
+
+void main() {
+  Fish fish = Fish('Goldfish');
+  fish.showDetails(); // In ra: Species: Goldfish, Swimming at speed 10.0
+
+  Human human = Human('John');
+  human.showDetails(); // In ra: Name: John, Swimming at speed 10.0
+
+  // Thay đổi giá trị của thuộc tính swimSpeed
+  human.swimSpeed = 15.0;
+  human.swim(); // In ra: Swimming at speed 15.0
+}
 
 // mixin CanFly {
 //   void fly() {
@@ -34,41 +67,30 @@
 //   }
 // }
 
-// //? Lớp Bird: Sử dụng mixin CanFly, do đó lớp này có thể truy cập phương thức fly().
-// class Bird with CanFly {
-//   void chirp() {
-//     print('Chirping');
+// mixin CanRun {
+//   void run() {
+//     print('Running');
 //   }
 // }
 
-// //? Lớp Human: Sử dụng mixin CanRun, do đó lớp này có thể truy cập phương thức run().
+// // //? Lớp Human: Sử dụng mixin CanRun, do đó lớp này có thể truy cập phương thức run().
 // class Human with CanRun {
 //   void speak() {
 //     print('Speaking');
 //   }
 // }
 
-// //? Lớp SuperHero: Sử dụng cả hai mixin CanRun và CanFly,
-// //? do đó lớp này có thể truy cập cả hai phương thức run() và fly().
-// class SuperHero with CanRun, CanFly {
+// // //? Lớp SuperHero: Sử dụng cả hai mixin CanRun và CanFly,
+// // //? do đó lớp này có thể truy cập cả hai phương thức run() và fly().
+// class SuperHero extends CanRun with CanRun, CanFly {
+//   @override
+//   void fly() {
+//     print("Bay cao vô cực");
+//   }
+
 //   void saveTheDay() {
 //     print('Saving the day!');
 //   }
-// }
-
-// void main() {
-//   Bird bird = Bird();
-//   bird.chirp(); // In ra: Chirping
-//   bird.fly();   // In ra: Flying
-
-//   Human human = Human();
-//   human.speak(); // In ra: Speaking
-//   human.run();   // In ra: Running
-
-//   SuperHero hero = SuperHero();
-//   hero.saveTheDay(); // In ra: Saving the day!
-//   hero.run();        // In ra: Running
-//   hero.fly();        // In ra: Flying
 // }
 
 //! Khi nào nên sử dụng Mixin?
@@ -91,48 +113,35 @@
 //  Bạn có thể định nghĩa các thuộc tính công khai trong mixin,
 //  và các lớp sử dụng mixin sẽ có quyền truy cập và sử dụng chúng
 //  như các thuộc tính của chính lớp đó
-// mixin CanSwim {
-//   double swimSpeed = 10.0; // Thuộc tính công khai
+mixin CanSwim {
+  double swimSpeed = 0; // Thuộc tính công khai
+  void swim() {
+    print('Swimming at speed $swimSpeed');
+  }
+}
 
-//   void swim() {
-//     print('Swimming at speed $swimSpeed');
-//   }
-// }
+class Fish with CanSwim {
+  String species;
 
-// class Fish with CanSwim {
-//   String species;
+  Fish(this.species);
 
+  void showDetails() {
+    print('Species: $species');
+    swimSpeed = 10;
+    swim();
+  }
+}
 
-//   Fish(this.species);
+class Human with CanSwim {
+  String name;
 
-//   void showDetails() {
-//     print('Species: $species');
-//     swim();
-//   }
-// }
+  Human(this.name);
 
-// class Human with CanSwim {
-//   String name;
-
-//   Human(this.name);
-
-//   void showDetails() {
-//     print('Name: $name');
-//     swim();
-//   }
-// }
-
-// void main() {
-//   Fish fish = Fish('Goldfish');
-//   fish.showDetails(); // In ra: Species: Goldfish, Swimming at speed 10.0
-
-//   Human human = Human('John');
-//   human.showDetails(); // In ra: Name: John, Swimming at speed 10.0
-
-//   // Thay đổi giá trị của thuộc tính swimSpeed
-//   human.swimSpeed = 15.0;
-//   human.swim(); // In ra: Swimming at speed 15.0
-// }
+  void showDetails() {
+    print('Name: $name');
+    swim();
+  }
+}
 
 //! Khi nào nên định nghĩa Thuộc tính trong Mixin
 //? Chia sẻ trạng thái:

@@ -12,11 +12,14 @@
 
 // import 'package:intl/intl.dart';
 
-// void main(List<String> args) {
-//   final amount = 100000;
-//   final vnCurrencyFormat = NumberFormat.currency(locale: "vi_VN", symbol: "đ");
-//   print(vnCurrencyFormat.format(amount));
-// }
+import 'package:intl/intl.dart';
+
+void main(List<String> args) {
+  final amount = 100000000.123;
+  final vnCurrencyFormat =
+      NumberFormat.currency(locale: "vi_VN", decimalDigits: 2);
+  print(vnCurrencyFormat.format(amount));
+}
 
 //! Bài tập
 // Sử dụng kiểu dữ liệu DateTime, Duration và thư viện https://pub.dev/packages/date_format,
