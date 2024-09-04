@@ -12,14 +12,14 @@
 
 // import 'package:intl/intl.dart';
 
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 
-void main(List<String> args) {
-  final amount = 100000000.123;
-  final vnCurrencyFormat =
-      NumberFormat.currency(locale: "vi_VN", decimalDigits: 2);
-  print(vnCurrencyFormat.format(amount));
-}
+// void main(List<String> args) {
+//   final amount = 100000000.123;
+//   final vnCurrencyFormat =
+//       NumberFormat.currency(locale: "vi_VN", decimalDigits: 2);
+//   print(vnCurrencyFormat.format(amount));
+// }
 
 //! Bài tập
 // Sử dụng kiểu dữ liệu DateTime, Duration và thư viện https://pub.dev/packages/date_format,
@@ -57,7 +57,8 @@ void main(List<String> args) {
 //? 2. Viết hàm kiểm tra ngày X có phải thứ 7, chủ nhật hay không?
 
 // void main() {
-//   DateTime date = DateTime.now();
+//   DateTime date = DateTime.now().subtract(Duration(days: 2));
+//   print(date);
 //   print('Ngày hiện tại có phải cuối tuần không: ${isWeekend(date)}');
 // }
 
@@ -65,14 +66,14 @@ void main(List<String> args) {
 //   return date.weekday == DateTime.saturday || date.weekday == DateTime.sunday;
 // }
 
-//? 3. Viết hàm để tính bao nhiêu ngày nữa là đến lễ 30/4/2024
-// int daysUntilNextHoliday() {
-//   DateTime today = DateTime.now();
-//   DateTime holiday = DateTime(2024, 4, 30);
-
-//   return holiday.difference(today).inDays;
-// }
-
+//? 3. Viết hàm để tính bao nhiêu ngày nữa là đến lễ 30/4/2025
 // void main() {
 //   print('Còn ${daysUntilNextHoliday()} ngày nữa đến 30/4/2024');
+// }
+
+// int daysUntilNextHoliday() {
+//   DateTime today = DateTime.now();
+//   DateTime holiday = DateTime(2025, 4, 30);
+
+//   return holiday.difference(today).inDays;
 // }
