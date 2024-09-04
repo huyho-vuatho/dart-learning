@@ -2,7 +2,8 @@
 /*
   Trong 1 chương trình Dart,
   Concurrency là khả năng thực hiện nhiều tác vụ đồng thời (concurrently)  
-  cho phép chương trình xử lý nhiều công việc 
+
+  Concurrency cho phép chương trình xử lý nhiều công việc 
   mà không phải chờ đợi từng công việc hoàn thành trước khi bắt đầu công việc tiếp theo.
 */
 /*
@@ -13,6 +14,8 @@
 */
 
 //! Event loop
+// Khi một chương trình Dart chạy, thì Event Loop chịu trách nhiệm để thực thi code, thu thập tác vụ và xử lý các tác vụ,…
+
 // Event Loop trong Dart là cơ chế quản lý các tác vụ bất đồng bộ 
 // và xử lý các sự kiện trong chương trình. 
 //
