@@ -12,6 +12,14 @@
  hoặc ngăn cản chương trình thực hiện các công việc khác.
 */
 
+//! Event loop
+// Event Loop trong Dart là cơ chế quản lý các tác vụ bất đồng bộ 
+// và xử lý các sự kiện trong chương trình. 
+//
+// Event loop đảm bảo rằng các tác vụ bất đồng bộ 
+// (chẳng hạn như đọc dữ liệu từ tệp, thực hiện yêu cầu HTTP, hoặc lắng nghe các sự kiện của người dùng) 
+// được thực thi mà không làm gián đoạn luồng chính của chương trình.
+
 //! Asynchronous
 /* 
  Dart sử dụng lập trình bất đồng bộ (asynchronous programming) để quản lý concurrency. 

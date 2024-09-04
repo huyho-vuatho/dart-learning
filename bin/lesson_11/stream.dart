@@ -89,7 +89,7 @@
   và thời điểm mà dữ liệu được phát vào một stream.
 */
 
-//? Tạo và sử dụng StreamController:
+//? Ví dụ 1: Tạo và sử dụng StreamController:
 // import 'dart:async';
 
 // void main() {
@@ -133,6 +133,60 @@
 //     Stream<int>.periodic(const Duration(
 //         seconds: 1), (count) => count * count).take(5);
 // }
+
+//? Ví dụ 2: Tạo và sử dụng StreamController
+import 'dart:async';
+
+void main(List<String> args) async {
+  final streamDemo = StreamDemo();
+  streamDemo.demoStream.listen(
+    (event) {
+      print("event value: $event");
+    },
+    onError: (err) {
+      print('Error!!!. $err');
+    },
+    onDone: () {
+      print('Stream is done and close');
+    },
+  );
+
+  for (int i = 0; i < 4; i++) {
+    if (i % 2 == 0) {
+      streamDemo.addError();
+    } else {
+      streamDemo.increment();
+    }
+    await Future.delayed(Duration(seconds: 2));
+  }
+
+  streamDemo.dispose();
+}
+
+class StreamDemo {
+  int _counter = 0;
+  int _errCounter = 0;
+
+  //? Controller có thể sink data, sink error và close
+  final _controller = StreamController<int>();
+
+  Stream<int> get demoStream => _controller.stream;
+
+  void addError() {
+    _errCounter += 1;
+    _controller.sink.addError(
+        Error.safeToString('This is an Error \$$_errCounter in Stream'));
+  }
+
+  void dispose() {
+    _controller.close();
+  }
+
+  void increment() {
+    _counter += 1;
+    _controller.sink.add(_counter);
+  }
+}
 
 //! Bài tập 2: Sử dụng StreamController
 
