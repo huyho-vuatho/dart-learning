@@ -19,18 +19,27 @@
 
 // void main() async {
 //   //? await for
+
+//   //! Lắng nghe Stream
+//   //? Cách 1:
 //   // Để lắng nghe một stream, bạn sử dụng cú pháp await for để xử lý từng giá trị của stream khi nó có sẵn.
 //   await for (int value in countStream(5)) {
 //     print('Nhận: $value');
 //   }
+
+//   //? Cách 2:
+//   // countStream(5).listen((value) {
+//   //   print('Nhận: $value');
+//   // });
 // }
 
-// //? Khi tạo một stream, bạn sử dụng async*
-// //  để định nghĩa một hàm sinh ra stream
+//? Khi tạo một stream, bạn sử dụng async*
+//  để định nghĩa một hàm sinh ra stream
 // Stream<int> countStream(int max) async* {
 //   for (int i = 1; i <= max; i++) {
-//     await Future.delayed(Duration(seconds: 1));
+//     await Future.delayed(Duration(seconds: i + 1));
 // //? keyword yield để cung cấp các giá trị cho stream.
+//     print("Yield value sau ${i + 1} giây");
 //     yield i;
 //   }
 // }
@@ -53,7 +62,6 @@
   3. Khi bộ đếm về 0, in ra dòng "Countdown complete!".
 */
 
-
 // Stream<int> countdownStream(int n) async* {
 //   for (int i = n; i >= 0; i--) {
 //     await Future.delayed(Duration(seconds: 1));
@@ -63,11 +71,11 @@
 
 // void main() async {
 //   print('Bắt đầu đếm ngược:');
-  
+
 //   await for (int value in countdownStream(5)) {
 //     print('Đếm: $value');
 //   }
-  
+
 //   print('Countdown complete!');
 // }
 
@@ -87,12 +95,12 @@
 // void main() {
 //   // Tạo StreamController
 //   //? 1. StreamController:
-//   //  Làm việc như một "người phát" dữ liệu (publisher) cho một stream. 
+//   //  Làm việc như một "người phát" dữ liệu (publisher) cho một stream.
 //   //  Nó có thể kiểm soát khi nào dữ liệu được thêm vào stream, và khi nào stream được đóng.
 //   final StreamController<int> controller = StreamController<int>();
 
 //   // Thêm dữ liệu vào stream
-//   //? 2. sink.add(:
+//   //? 2. sink.add():
 //   // Dùng để thêm dữ liệu vào stream
 //   controller.sink.add(1);
 //   controller.sink.add(2);
@@ -110,11 +118,9 @@
 
 //   // });
 
-  
-
 //   // Đóng stream khi hoàn tất
 //   //? controller.close()
-//   // Đóng stream khi không còn dữ liệu nào được phát đi. 
+//   // Đóng stream khi không còn dữ liệu nào được phát đi.
 //   // Nếu không gọi phương thức này, stream có thể tiếp tục mở và gây rò rỉ bộ nhớ.
 //   controller.close();
 // }
@@ -127,7 +133,6 @@
 //     Stream<int>.periodic(const Duration(
 //         seconds: 1), (count) => count * count).take(5);
 // }
-
 
 //! Bài tập 2: Sử dụng StreamController
 
@@ -144,9 +149,6 @@ Sử dụng StreamController để phát dữ liệu cảm biến này và lắn
   3. Trong hàm main(), lắng nghe stream và in ra nhiệt độ mỗi khi có giá trị mới.
   4. Đảm bảo đóng StreamController sau khi hoàn thành.
 */
-
-
-
 
 // import 'dart:async';
 // import 'dart:math';

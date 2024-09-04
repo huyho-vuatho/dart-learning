@@ -1,6 +1,6 @@
 //! Future là gì?
 /*
- Là kiểu đại diện cho một kết quả từ 1 tác vụ asynchronous, 
+ Là kiểu đại diện cho một kết quả từ 1 tác vụ asynchronous (bất đồng bộ), 
  sau khi tác vụ hoàn thành thì nó sẽ trở thành 1 value hoặc lỗi khi không hoàn thành.
 */
 
@@ -8,9 +8,11 @@
 // void main() async {
 //   print('Bắt đầu chương trình');
 
-//   // Sử dụng await để đợi kết quả từ hàm fetchDataFromServer
 //   final data = fetchDataFromServer();
 
+//! Lấy giá trị của hàm bất đồng bộ
+//? Cách 1: sử dụng then(value)
+//? khi hàm then dc gọi, nó sẽ mang theo giá trị trả về của hàm bất đồng bộ sau khi đã xử lý xong
 //   data.then((value) {
 //     print('Dữ liệu đã được tải');
 //     // Hiển thị dữ liệu đã tải lên
@@ -30,7 +32,8 @@
 //   });
 // }
 
-//! Async await
+//! Lấy giá trị của hàm bất đồng bộ
+//? Cách 2: sử dụng Async await
 /*
 ?  Là cặp keyword dùng trong asynchronous lập trình.
   Từ khóa await chỉ được sử dụng ngay bên trong một async function (method)
