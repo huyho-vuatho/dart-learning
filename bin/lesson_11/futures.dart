@@ -10,9 +10,9 @@
 
 //   final data = fetchDataFromServer();
 
-//! Lấy giá trị của hàm bất đồng bộ
-//? Cách 1: sử dụng then(value)
-//? khi hàm then dc gọi, nó sẽ mang theo giá trị trả về của hàm bất đồng bộ sau khi đã xử lý xong
+// // ! Lấy giá trị của hàm bất đồng bộ
+// // ? Cách 1: sử dụng then(value)
+// // ? khi hàm then dc gọi, nó sẽ mang theo giá trị trả về của hàm bất đồng bộ sau khi đã xử lý xong
 //   data.then((value) {
 //     print('Dữ liệu đã được tải');
 //     // Hiển thị dữ liệu đã tải lên
@@ -47,12 +47,14 @@
 //   print('Bắt đầu chương trình 1');
 
 //   // Sử dụng await để đợi kết quả từ hàm fetchDataFromServer
-//   String data = await fetchDataFromServer();
+//   final data = fetchDataFromServer();
 
-//   // Hiển thị dữ liệu đã tải lên
-//   print('Dữ liệu nhận được: $data');
+//   data.then((value) {
+//     // Hiển thị dữ liệu đã tải lên
+//     print('Dữ liệu nhận được: $value');
 
-//   print('Kết thúc chương trình 1');
+//     print('Kết thúc chương trình 1');
+//   });
 
 //   print('Chạy các chương trình khác');
 // }
@@ -60,11 +62,14 @@
 // Future<String> fetchDataFromServer() async {
 //   print('Đang tải dữ liệu từ server...');
 
-//   // Giả lập độ trễ khi tải dữ liệu bằng cách chờ 2 giây
-//   await Future.delayed(Duration(seconds: 2));
+//   final password = await getPassword();
 
 //   // Trả về kết quả sau khi hoàn thành
-//   return 'Dữ liệu đã được tải';
+//   return password;
+// }
+
+// Future<String> getPassword() {
+//   return Future.delayed(Duration(seconds: 10), () => "abcdeyx");
 // }
 
 //! Bài tập: Giả lập Hệ Thống Đặt Hàng Trực Tuyến
@@ -110,56 +115,58 @@ Nếu sản phẩm không có sẵn, trả về chuỗi "Product out of stock".
 */
 
 //! Giải bài tập
-// Hàm kiểm tra hàng tồn kho
-import 'dart:math';
 
-void main() async {
-  print('Bắt đầu đặt hàng...');
+// import 'dart:math';
 
-  // Đặt hàng cho sản phẩm "Laptop"
-  String orderStatus = await placeOrder('Laptop');
-  print(orderStatus);
+// void main() async {
+//   print('Bắt đầu đặt hàng...');
 
-  print('Kết thúc đặt hàng');
-}
+//   // Đặt hàng cho sản phẩm "Laptop"
+//   String orderStatus = await placeOrder('Laptop');
+//   print(orderStatus);
 
-Future<bool> checkInventory(String product) async {
-  print('Kiểm tra hàng tồn kho cho sản phẩm: $product...');
-  await Future.delayed(Duration(seconds: 1));
-  // Giả lập sản phẩm có sẵn hoặc ko
-  return Random().nextBool();
-}
+//   print('Kết thúc đặt hàng');
+// }
 
-// Hàm xác nhận đơn hàng
-Future<String> confirmOrder(String product) async {
-  print('Xác nhận đơn hàng cho sản phẩm: $product...');
-  await Future.delayed(Duration(seconds: 1));
-  // Giả lập xác nhận đơn hàng thành công
-  return 'Order Confirmed';
-}
+// //? 1: Hàm kiểm tra hàng tồn kho
 
-// Hàm đặt hàng
-Future<String> placeOrder(String product) async {
-  // Bước 1: Kiểm tra hàng tồn kho
-  bool inStock = await checkInventory(product);
+// Future<bool> checkInventory(String product) async {
+//   print('Kiểm tra hàng tồn kho cho sản phẩm: $product...');
+//   await Future.delayed(Duration(seconds: 1));
+//   // Giả lập sản phẩm có sẵn hoặc ko
+//   return Random().nextBool();
+// }
 
-  if (!inStock) {
-    return 'Product out of stock';
-  }
+// //? Hàm xác nhận đơn hàng
+// Future<String> confirmOrder(String product) async {
+//   print('Xác nhận đơn hàng cho sản phẩm: $product...');
+//   await Future.delayed(Duration(seconds: 1));
+//   // Giả lập xác nhận đơn hàng thành công
+//   return 'Order Confirmed';
+// }
 
-  // Bước 2: Xử lý thanh toán
-  String paymentStatus = await processPayment(product);
-  print(paymentStatus);
+// //? Hàm đặt hàng
+// Future<String> placeOrder(String product) async {
+//   // Bước 1: Kiểm tra hàng tồn kho
+//   bool inStock = await checkInventory(product);
 
-  // Bước 3: Xác nhận đơn hàng
-  String confirmation = await confirmOrder(product);
-  return confirmation;
-}
+//   if (!inStock) {
+//     return 'Product out of stock';
+//   }
 
-// Hàm xử lý thanh toán
-Future<String> processPayment(String product) async {
-  print('Xử lý thanh toán cho sản phẩm: $product...');
-  await Future.delayed(Duration(seconds: 2));
-  // Giả lập thanh toán thành công
-  return 'Payment Successful';
-}
+//   // Bước 2: Xử lý thanh toán
+//   String paymentStatus = await processPayment(product);
+//   print(paymentStatus);
+
+//   // Bước 3: Xác nhận đơn hàng
+//   String confirmation = await confirmOrder(product);
+//   return confirmation;
+// }
+
+// // Hàm xử lý thanh toán
+// Future<String> processPayment(String product) async {
+//   print('Xử lý thanh toán cho sản phẩm: $product...');
+//   await Future.delayed(Duration(seconds: 2));
+//   // Giả lập thanh toán thành công
+//   return 'Payment Successful';
+// }

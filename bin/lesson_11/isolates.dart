@@ -43,6 +43,7 @@
 
 //   // Đọc nội dung tệp
 //   String jsonString = await file.readAsString();
+//   print("nội dung tệp: $jsonString");
 
 //   // Chuyển đổi chuỗi JSON thành đối tượng Map
 //   final jsonResponse = json.decode(jsonString);
@@ -53,6 +54,7 @@
 //! Bài Tập: Xử lý heavy task
 
 import 'dart:async';
+import 'dart:isolate';
 
 void main(List<String> args) async {
   var timer = Timer.periodic(Duration(milliseconds: 500), (timer) {
@@ -60,9 +62,13 @@ void main(List<String> args) async {
       print('Loading ... ${timer.tick / 2} sec');
     }
   });
+
   print("Start");
-  final result = await heavyTask();
-  // final result = await Isolate.run(heavyTask);
+  //? TH1: Ko sử dụng isolate cho heavy task
+  // final result = await heavyTask();
+
+  //? TH2: Sử dụng Isolate cho heavy task
+  final result = await Isolate.run(heavyTask);
   print("value is: $result");
   print('End');
 
@@ -76,3 +82,20 @@ Future<int> heavyTask() async {
   }
   return value;
 }
+
+
+// Mobile: Request lấy thông tin user từ Server
+
+// Server:
+//  - Nhận Request từ mobile
+//  - Lấy dữ liệu Database (nơi lưu trữ thông tin)
+//  - Convert dữ liệu từ Database -> Json Template
+
+// {
+//     "name": "huy",
+//     "age": 12,
+//     "city": "HCMC"
+// }
+
+// - Gửi Json Data về Mobile hoặc front-end
+// - Mobile: cũng phải convert json -> kiểu dữ liệu mà mobile hiểu và xử lý dc
